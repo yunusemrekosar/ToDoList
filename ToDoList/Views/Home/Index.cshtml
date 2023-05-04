@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<ToDoList.Models.Todo>
+<button class="openbtn" onclick="openNav()">&#9776;</button> @*jquerye dön*@
+
+<div class="container">
+    <div class="row">
+        <div class="main col-md-12">
+            <div class="app-container" style="max-height:80vh" id="taskList">
+                <h1 class="app-header">TO DO LIST</h1>
+                <div class="add-task">
+                    <input type="text" autocomplete="off" placeholder="Add New Task" class="task-input">
+                    <input type="submit" value="" class="submit-task" title="Add Task">
+                </div>
+                <ul class="task-list">
+                    @foreach (var item in Model)
+                    {
+                        <li class="task-list-item mb-3" data-id=" @item.Id " data-createDate=" @item.CreatedOn " data-updateDate=" @item.UpdatedOn " data-expiredDate=" @item.ExpiredOn " data-description=" @item.Description ">
+                            <div class="checkbox-wrapper-39">
+                                <label>
+                                    @if (item.IsCompleted == true)
+                                    {
+                                        <input type="checkbox" checked />
+                                        <span class="checkbox"></span>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" />
+                                        <span class="checkbox"></span>
+                                    }
+                                </label>
+                            </div>
+                            <label class="task-list-item-label">
+                                <span contenteditable="true">@item.Title</span>
+                            </label>
+                            <div class="btn-container">
+                                <span class="info-btn" title="İnfo Task"></span>
+
+                                <span class="delete-btn" title="Delete Task"></span>
+                            </div>
+                        </li>
+                    }
+             
+
+                </ul>
+            </div>
+        </div>
+        <div class="details none">
+            <div class="detail-container ">
+                <div style="display:flex; justify-content:space-between;">
+                    <h1 class="app-header"> DETAIL </h1>
+                    <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+                </div>
+                <div class="mb-3">
+                    <label class="task-list-item">
+                        <span contenteditable="true" style="color:white">55955</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label class="task-list-item">
+                        <span contenteditable="true" style="color:white">55955</span>
+                    </label>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
