@@ -162,7 +162,7 @@ namespace ToDoList.DAL.Concrete
                 {
                     connection.Open();
 
-                    var command = new SqlCommand("Select [id], [title], [is_completed], [expired_on], [created_on],[updated_on],[description] from todos where is_active = 1 and user_id = @UserId", connection);
+                    var command = new SqlCommand("Select [id], [title], [is_completed], [expired_on], [created_on],[updated_on],[description] from todos where is_active = 1 and user_id = @UserId order by created_on desc", connection);
 
                     command.Parameters.AddWithValue("@UserId", UserId);
 

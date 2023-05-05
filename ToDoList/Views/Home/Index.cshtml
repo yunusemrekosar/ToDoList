@@ -31,9 +31,18 @@
                                     }
                                 </label>
                             </div>
-                            <label class="task-list-item-label">
-                                <span contenteditable="true">@item.Title</span>
-                            </label>
+                            @if (item.IsCompleted == true)
+                            {
+                                <label class="task-list-item-label done">
+                                    <span contenteditable="false">@item.Title</span>
+                                </label>
+                            }
+                            else
+                            {
+                                 <label class="task-list-item-label">
+                                    <span class="todo" contenteditable="true">@item.Title</span>
+                                </label>   
+                            }
                             <div class="btn-container">
                                 <span class="info-btn" title="İnfo Task"></span>
 
@@ -41,7 +50,7 @@
                             </div>
                         </li>
                     }
-             
+
 
                 </ul>
             </div>

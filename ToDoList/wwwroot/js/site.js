@@ -5,7 +5,7 @@
     $('.main').addClass('col-md-12');
 });
 
-$('.btn-container').on('click','.info-btn', function () {
+$('.task-list').on('click','.info-btn', function () {
     $('.details').removeClass('none');
     $('.details').addClass('col-md-4');
     $('.main').removeClass('col-md-12');
