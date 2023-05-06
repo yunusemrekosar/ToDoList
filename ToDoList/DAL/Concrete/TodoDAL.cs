@@ -30,7 +30,7 @@ namespace ToDoList.DAL.Concrete
                             "INSERT INTO Todos (user_id, title, expired_on, description) OUTPUT INSERTED.id VALUES (@userId, @title, @expired_on, @description)",
                             connection);
 
-                    command.Parameters.AddWithValue("@userId",new Guid("91587BEF-0EE6-4D93-B0F7-0DEB0DB6D72A"));
+                    command.Parameters.AddWithValue("@userId", new Guid("91587BEF-0EE6-4D93-B0F7-0DEB0DB6D72A"));
                     command.Parameters.AddWithValue("@title", todo.Title);
                     command.Parameters.AddWithValue("@expired_on", todo.ExpiredOn == null ? DBNull.Value : todo.ExpiredOn);
                     command.Parameters.AddWithValue("@description", todo.Description == null ? DBNull.Value : todo.Description);
@@ -40,14 +40,14 @@ namespace ToDoList.DAL.Concrete
                     if (row == null)
                     {
                         return "false";
-                        
+
                     }
                     return row;
 
                 }
                 catch (Exception e)
                 {
-                    return "false" ;
+                    return "false";
                 }
 
             }
@@ -91,7 +91,7 @@ namespace ToDoList.DAL.Concrete
                 try
                 {
                     connection.Open();
-             
+
                     var command = new SqlCommand("UPDATE todos SET is_completed = is_completed ^ 1 where id = @id", connection);
 
                     command.Parameters.AddWithValue("@id", Id);
@@ -114,7 +114,7 @@ namespace ToDoList.DAL.Concrete
             }
         }
 
-        public List<Todo> GetTodoById(Guid TodoId)
+        public Todo GetTodoById(Guid TodoId)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString.Value.SQLConnectionString))
             {
@@ -128,29 +128,25 @@ namespace ToDoList.DAL.Concrete
 
                     var reader = command.ExecuteReader();
 
-                    List<Todo> Todos = new List<Todo>();
+                    if (!reader.HasRows)
+                        return null;
 
-                    while (reader.Read())
-                    {
-                        Todo todo = new Todo();
-                        todo.Id = reader.GetGuid(0);
-                        todo.Title = reader.GetString(1);
-                        todo.IsCompleted = reader.GetBoolean(2);
-                        todo.CreatedOn = reader.GetDateTime(3);
-                        todo.UpdatedOn = reader.GetDateTime(4);
-                        todo.ExpiredOn = reader.IsDBNull(5) ? null : reader.GetDateTime(5);
-                        todo.Description = reader.IsDBNull(5) ? null : reader.GetString(6);
-                        Todos.Add(todo);
-                    }
+                    reader.Read();
+                    Todo todo = new Todo();
+                    todo.Id = reader.GetGuid(0);
+                    todo.Title = reader.GetString(1);
+                    todo.IsCompleted = reader.GetBoolean(2);
+                    todo.CreatedOn = reader.GetDateTime(3);
+                    todo.UpdatedOn = reader.GetDateTime(4);
+                    todo.ExpiredOn = reader.IsDBNull(5) ? null : reader.GetDateTime(5);
+                    todo.Description = reader.IsDBNull(5) ? null : reader.GetString(6);
 
-                    return Todos;
-
+                    return todo;
                 }
                 catch (Exception e)
                 {
                     return null;
                 }
-
             }
         }
 
@@ -170,6 +166,7 @@ namespace ToDoList.DAL.Concrete
 
                     List<Todo> Todos = new List<Todo>();
 
+
                     while (reader.Read())
                     {
                         Todo todo = new Todo();
@@ -179,7 +176,7 @@ namespace ToDoList.DAL.Concrete
                         todo.ExpiredOn = reader.IsDBNull(3) ? null : reader.GetDateTime(3);
                         todo.CreatedOn = reader.GetDateTime(4);
                         todo.UpdatedOn = reader.GetDateTime(5);
-                        todo.Description = reader.IsDBNull(6) ? null :  reader.GetString(6);
+                        todo.Description = reader.IsDBNull(6) ? null : reader.GetString(6);
 
                         Todos.Add(todo);
                     }
@@ -224,6 +221,43 @@ namespace ToDoList.DAL.Concrete
                 catch (Exception e)
                 {
                     return false;
+                }
+
+            }
+        }
+
+        public Todo GetLastTodo(Guid UserId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString.Value.SQLConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    var command = new SqlCommand("Select TOP(1) [id], [title], [is_completed], [created_on], [updated_on], [expired_on], [description] from todos where user_id = @user_id and is_active = 1 ORDER BY created_on desc", connection);
+                    command.Parameters.AddWithValue("@user_id", UserId);
+
+                    var reader = command.ExecuteReader();
+
+                    if (!reader.HasRows)
+                        return null;
+
+                    Todo todo = new Todo();
+                    reader.Read();
+                    todo.Id = reader.GetGuid(0);
+                    todo.Title = reader.GetString(1);
+                    todo.IsCompleted = reader.GetBoolean(2);
+                    todo.CreatedOn = reader.GetDateTime(3);
+                    todo.UpdatedOn = reader.GetDateTime(4);
+                    todo.ExpiredOn = reader.IsDBNull(5) ? null : reader.GetDateTime(5);
+                    todo.Description = reader.IsDBNull(5) ? null : reader.GetString(6);
+
+                    return todo;
+
+                }
+                catch (Exception e)
+                {
+                    return null;
                 }
 
             }

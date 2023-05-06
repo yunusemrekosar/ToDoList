@@ -14,7 +14,8 @@ namespace ToDoList.DAL.Abstract
 
         public List<Todo>? GetUsersTodos(Guid UserId);
 
-        public List<Todo> GetTodoById(Guid TodoId);
+        public Todo GetTodoById(Guid TodoId);
 
+        public Todo GetLastTodo(Guid UserId);
     }
 }

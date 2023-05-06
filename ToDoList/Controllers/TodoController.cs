@@ -15,13 +15,13 @@ namespace ToDoList.Controllers
 
         public IActionResult Index()
         {
-            return Json(_todoDAL.GetUsersTodos(new Guid("91587BEF-0EE6-4D93-B0F7-0DEB0DB6D72A")));
+            return Json(_todoDAL.GetUsersTodos(new Guid()));
         }
 
         [HttpPost]
         public IActionResult AddTodo(Todo todo)
         {
-            return Json(_todoDAL.AddTodo(todo));
+            return Json(_todoDAL.GetTodoById(new Guid(_todoDAL.AddTodo(todo))));
         }
 
         [HttpPost]
@@ -35,5 +35,12 @@ namespace ToDoList.Controllers
         {
             return _todoDAL.DeleteTodo(new Guid(Id)) ? StatusCode(200) : StatusCode(400);
         }
+
+        public IActionResult UpdateTodo(Todo todo)
+        {
+            return _todoDAL.UpdateTodo(todo) ? StatusCode(200) : StatusCode(400);
+        }
+
+
     }
 }

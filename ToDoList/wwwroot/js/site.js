@@ -5,13 +5,6 @@
     $('.main').addClass('col-md-12');
 });
 
-$('.task-list').on('click','.info-btn', function () {
-    $('.details').removeClass('none');
-    $('.details').addClass('col-md-4');
-    $('.main').removeClass('col-md-12');
-    $('.main').addClass('col-md-8');
-});
-
 
 //$('.openbtn').on('click',  function () {
 //    $(".sidenav").toggleClass('side-toggled');

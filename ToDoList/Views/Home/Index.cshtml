@@ -2,10 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 @model List<ToDoList.Models.Todo>
-<button class="openbtn" onclick="openNav()">&#9776;</button> @*jquerye dön*@
-<style>
 
-</style>
+<button class="openbtn" onclick="openNav()">&#9776;</button> @*jquerye dön*@
 
 <div class="container">
     <div class="row">
@@ -19,7 +17,7 @@
                 <ul class="task-list">
                     @foreach (var item in Model)
                     {
-                        <li class="task-list-item mb-3" data-id=" @item.Id " data-createDate=" @item.CreatedOn " data-updateDate=" @item.UpdatedOn " data-expiredDate=" @item.ExpiredOn " data-description=" @item.Description ">
+                        <li class="task-list-item mb-3 list-todo" data-id="@item.Id" data-createDate="@item.CreatedOn" data-updatedDate=" @item.UpdatedOn" data-expiredDate="@item.ExpiredOn" data-description="@item.Description">
                             <div class="checkbox-wrapper-39">
                                 <label>
                                     @if (item.IsCompleted == true)
@@ -37,13 +35,13 @@
                             @if (item.IsCompleted == true)
                             {
                                 <label class="task-list-item-label done">
-                                    <span contenteditable="false">@item.Title</span>
+                                    <span class="todoname-label">@item.Title</span>
                                 </label>
                             }
                             else
                             {
                                 <label class="task-list-item-label">
-                                    <span class="todo" contenteditable="false">@item.Title</span>
+                                    <span class="todoname-label">@item.Title</span>
                                 </label>
                             }
                             <div class="btn-container">
@@ -53,38 +51,41 @@
                             </div>
                         </li>
                     }
-
-
                 </ul>
             </div>
         </div>
-        <div class="details  col-md-4">
+        <div class="details col-md-4">
             <div class="detail-container" style=" max-height:80vh">
                 <div style="display:flex; justify-content:space-between;">
                     <h1 class="app-header"> DETAIL </h1>
                     <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
                 </div>
-              
+
                 <div class="mb-3">
                     <label class="mb-2 description-label">Yapılacak İş</label>
-                    <label class="task-list-item">
-                        <span contenteditable="false" style="color:white">55955</span>
+                    <label class="task-list-item todonameparent">
+                        <span class="todoname" contenteditable="false" style="color:white"></span>
                     </label>
                 </div>
                 <div class="mb-3">
-                    <label class="mb-2 description-label" >Açıklama</label>
-                    <textarea placeholder="Bir Açıklama Gir" class="description-input"></textarea>
+                    <label class="mb-2 description-label">Açıklama</label>
+                    <textarea class="add-desc description-input" placeholder="Bir Açıklama Gir"></textarea>
                 </div>
                 <div style="display:flex; font-size:x-small; justify-content:space-between; margin-left:1px;">
                     <label style="width:21vh;" class="mb-2 text-white">Son Güncelleme Tarihi</label>
                     <label style="width:21vh;" class="mb-2 text-white">Bitiş Tarihi</label>
                 </div>
-                <div  style="display:flex; justify-content:space-between;">
+                <div style="display:flex; justify-content:space-between;">
                     <input id="updated" style="width:20vh;" class="datetime-picker" readonly value="2023-05-06T14:30" type="datetime-local">
                     <span style="color:white">|</span>
                     <input id="expired" class="datetime-picker" value="2023-05-06T14:30" type="datetime-local">
                 </div>
+                <div class="mt-3 update-parent" style="display:flex; justify-content:space-around;">
+                    <input type="submit" value="" class="update-task" title="Update Task">
+                </div>
             </div>
         </div>
     </div>
+</div>
+
 
