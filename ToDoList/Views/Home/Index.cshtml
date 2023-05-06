@@ -3,10 +3,13 @@
 }
 @model List<ToDoList.Models.Todo>
 <button class="openbtn" onclick="openNav()">&#9776;</button> @*jquerye dön*@
+<style>
+
+</style>
 
 <div class="container">
     <div class="row">
-        <div class="main col-md-12">
+        <div class="main col-md-8">
             <div class="app-container" style="max-height:80vh" id="taskList">
                 <h1 class="app-header">TO DO LIST</h1>
                 <div class="add-task">
@@ -39,9 +42,9 @@
                             }
                             else
                             {
-                                 <label class="task-list-item-label">
-                                    <span class="todo" contenteditable="true">@item.Title</span>
-                                </label>   
+                                <label class="task-list-item-label">
+                                    <span class="todo" contenteditable="false">@item.Title</span>
+                                </label>
                             }
                             <div class="btn-container">
                                 <span class="info-btn" title="İnfo Task"></span>
@@ -55,25 +58,33 @@
                 </ul>
             </div>
         </div>
-        <div class="details none">
-            <div class="detail-container ">
+        <div class="details  col-md-4">
+            <div class="detail-container" style=" max-height:80vh">
                 <div style="display:flex; justify-content:space-between;">
                     <h1 class="app-header"> DETAIL </h1>
                     <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
                 </div>
+              
                 <div class="mb-3">
+                    <label class="mb-2 description-label">Yapılacak İş</label>
                     <label class="task-list-item">
-                        <span contenteditable="true" style="color:white">55955</span>
+                        <span contenteditable="false" style="color:white">55955</span>
                     </label>
                 </div>
                 <div class="mb-3">
-                    <label class="task-list-item">
-                        <span contenteditable="true" style="color:white">55955</span>
-                    </label>
+                    <label class="mb-2 description-label" >Açıklama</label>
+                    <textarea placeholder="Bir Açıklama Gir" class="description-input"></textarea>
+                </div>
+                <div style="display:flex; font-size:x-small; justify-content:space-between; margin-left:1px;">
+                    <label style="width:21vh;" class="mb-2 text-white">Son Güncelleme Tarihi</label>
+                    <label style="width:21vh;" class="mb-2 text-white">Bitiş Tarihi</label>
+                </div>
+                <div  style="display:flex; justify-content:space-between;">
+                    <input id="updated" style="width:20vh;" class="datetime-picker" readonly value="2023-05-06T14:30" type="datetime-local">
+                    <span style="color:white">|</span>
+                    <input id="expired" class="datetime-picker" value="2023-05-06T14:30" type="datetime-local">
                 </div>
             </div>
-
-
         </div>
     </div>
-</div>
+

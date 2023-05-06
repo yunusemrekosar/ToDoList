@@ -88,6 +88,38 @@ ul {
     border-radius: 0;
 }
 
+.description-label {
+    color:white;
+    font-size: small;
+}
+.description-input {
+    border-right: groove;
+    width: 100%;
+    padding: 0 4px;
+    border:  groove;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    margin-right: 12px;
+    color: #fff;
+    box-shadow: none;
+    border-radius:  revert;
+}
+textarea.description-input::placeholder {
+    font-family: 'DM Sans', sans-serif;
+    color: white;
+}
+.datetime-picker {
+    color: white;
+    border: none;
+    width: 21vh;
+    background-color: transparent;
+}
+    .datetime-picker::-webkit-calendar-picker-indicator {
+        filter: invert(100%);
+    }
+
+
+
 .task-list-item {
     background-color: #191933;
     border-radius: 4px;
