@@ -36,7 +36,7 @@ $('.submit-task').on('click', function (e) {
             var updatedOn = moment(data.updatedOn, "YYYY-MM-DDTHH:mm").format("D.MM.YYYY HH:mm:ss");
             var expiredOn = moment(data.expiredOn, "YYYY-MM-DDTHH:mm").format("D.MM.YYYY HH:mm:ss");
 
-            var newTask = $(`<li class="task-list-item mb-3 list-todo" data-id=" ${data.id} " data-createdDate=" ${createdOn} " data-updatedDate=" ${updatedOn} " data-expiredDate=" ${expiredOn != 'Invalid date' ? expiredOn : ''} " data-description=" ${data.description} "><div class="checkbox-wrapper-39"><label><input type="checkbox" /><span class="checkbox"></span></label></div><label class="task-list-item-label"><span class="todoname-label" contenteditable="false">${TaskInput.val()}</span></label><div class="btn-container"><span class="info-btn" title="İnfo Task"></span><span class="delete-btn" title="Delete Task"></span></div>`);
+            var newTask = $(`<li class="task-list-item mb-3 list-todo" data-id=" ${data.id} " data-createdDate=" ${createdOn} " data-updatedDate=" ${updatedOn} " data-expiredDate=" ${expiredOn != 'Invalid date' ? expiredOn : ''} " data-description=" ${data.description != null ? data.description : ''} "><div class="checkbox-wrapper-39"><label><input type="checkbox" /><span class="checkbox"></span></label></div><label class="task-list-item-label"><span class="todoname-label" contenteditable="false">${TaskInput.val()}</span></label><div class="btn-container"><span class="info-btn" title="İnfo Task"></span><span class="delete-btn" title="Delete Task"></span></div>`);
             $('.task-list').prepend(newTask);
             TaskInput.val('');
             TaskInput.toggleClass('wait');
