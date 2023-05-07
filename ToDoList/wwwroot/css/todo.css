@@ -45,6 +45,16 @@ ul {
     overflow: auto;
 }
 
+
+.select-header {
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 32px;
+    color: #fff;
+    background-color: #191933;
+}
 .app-header {
     font-size: 20px;
     line-height: 32px;
@@ -67,36 +77,28 @@ ul {
     cursor: pointer;
     box-shadow: 0 0 6px 0 var(--add-button-shadow);
 }
-/*.update-task {
-
-
-    color: #fff;
-  
-  
-}*/
 
 .update-task {
-    display: inline-block;
-    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
     border-radius: 50px;
-    background-image: url(../img/update-100.png);
-    background-size: 22px;
-    background-position: center;
-    background-repeat: no-repeat;
-    flex-shrink: 0;
     border: none;
     background-color: #191933;
     color: #000;
     width: 90px;
     height: 40px;
-    border-radius: 50%;
     cursor: pointer;
-    font-size: 16px;
     text-align: center;
     text-decoration: none;
     color: #191933;
 }
 
+.update-img {
+    max-width: 110%;
+    max-height: 110%;
+}
 
 .add-task {
     height: 40px;

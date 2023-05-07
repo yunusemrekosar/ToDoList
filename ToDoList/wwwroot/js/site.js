@@ -6,16 +6,31 @@
 });
 
 
-//$('.openbtn').on('click',  function () {
-//    $(".sidenav").toggleClass('side-toggled');
-//    $(".main").toggleClass('main-toggled');
-//});
+$('.openbtn').off().on('click', function (e) {
+    $("#mySidenav").toggleClass('open');
 
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-}
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-} // todo: jquerye dön
+    if ($("#mySidenav").hasClass("open")) {
+        $("#mySidenav").css("width", "250px");
+        $("#main").css("marginLeft", "250px");
+        $(".openbtn").html('&times;');      
+    }
+    else {
+        $("#mySidenav").css("width", "0");
+        $("#main").css("marginLeft", "0");
+        $(".openbtn").html('&#9776;');  
+    } 
+});
+
+$('#showdone').on('click', function (e) {
+    $('li').removeClass('none')
+    $('.task-list-item-label:not(.done)').parent().addClass('none');
+});
+
+$('#showall').on('click', function (e) {
+    $('li').removeClass('none');
+});
+
+$('#showundone').on('click', function (e) {
+    $('li').removeClass('none')
+    $('.task-list-item-label.done').parent().addClass('none');
+});
