@@ -19,7 +19,7 @@
         });
     }
     else if (e.which == 13) {
-        alert('Please enter new task');
+        toastr.error('', 'Lütfen bir görev girin!');
     }
 });
 
@@ -42,7 +42,7 @@ $('.submit-task').on('click', function (e) {
             TaskInput.toggleClass('wait');
         });
     } else {
-        alert('Please enter new task');
+        toastr.error('' ,'Lütfen bir görev girin!');
     }
 });
 
@@ -129,3 +129,6 @@ $('.update-task').on('click', function () {
     }, 800);
     })
 });
+
+
+
